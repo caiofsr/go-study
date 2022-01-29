@@ -18,6 +18,11 @@ func VerifyWebsites(vw VerifierWebsite, urls []string) map[string]bool {
 		}(url)
 	}
 
+	for i := 0; i < len(urls); i++ {
+		result := <-channelResult
+		results[result.string] = result.bool
+	}
+
 	time.Sleep(2 * time.Second)
 
 	return results
